@@ -9,11 +9,15 @@ import { map } from 'rxjs/operators';
 })
 export class ApiService {
 
-characters = [];
 
   constructor(private http: HttpClient) {
 //this.loadUsers();  
 }
+
+ getUsers() {
+    return this.http.get('https://randomuser.me/api/?results=25');
+  }
+
 
 loadUsers(){
    return this.http.get(`https://www.breakingbadapi.com/api/characters?limit=20`)
