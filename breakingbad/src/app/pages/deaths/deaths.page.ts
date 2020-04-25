@@ -10,50 +10,59 @@ import { NavController } from '@ionic/angular';
     styleUrls: ['./deaths.page.scss'],
 })
 export class DeathsPage implements OnInit {
-    //  user: any = []
-     users: any[] = [];
-    //users: Array<any>;  
+    
     deaths: Observable<any>;
-  searchQuery: string = '';
+    items: any[] =[]; 
+    searchText='';
 
     constructor(private router: Router, private api: ApiService, navCtrl: NavController) { }
 
     ngOnInit() {
-     
-    this.ionViewDidLoad();
+                 this.initializeItems(); 
 //this.getItems(event);
 
-    }
-
-    //  this.deaths.subscribe(data => {console.log('my data' , data);
+  //  this.deaths.subscribe(data => {console.log('my data' , data);
     //}
+  
+}
 
-
-    ionViewDidLoad() {
-          this.deaths= this.api.getUsers();
-       this.deaths.subscribe((data) => { // Success
-            this.users = data['results'];
-            console.log('data: ' + data);
-
-        }
-        );
+      initializeItems(){
+      this.deaths=this.api.getDeaths(); 
+      this.deaths.subscribe(item => {
+          this.items=[item];
+          // console it is only to check the info in console 
+          //console.log( data); 
+      });
     }
 
-     getItems(ev: any) {
-    // Reset items back to all of the items
-    this.ionViewDidLoad();
-
-    // set val to the value of the searchbar
-    const val = ev.target.value;
-
-    // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.users = this.users.filter((user) => {
-                  console.log('newdata: ' + user)  
-        return (user.name.first.toLowerCase().indexOf(val.toLowerCase()) > -1);
-    })
-    }}
-
-
+  //event is the name of the property that i have for this method 
+  searchDeath(event){
+      const text = event.target.value; 
+      this.searchText = text; 
+  //   this.searchText = event.detail.value;
+    //    const text = event.target.href;
+        
+    //      this.initializeItems(); 
+        
+    //  if (text && text.trim()!=''){
+    //        this.items=this.items.filter((quote)=>{
+    //            return(quote.author.toLowerCase().includes(text.toLowerCase())>-1);
+    //        })
+    //    }
+   
+    //  const text = event.target.author; 
+    //    if (text && text.trim()!=''){
+    //        this.items=this.items.filter((quote)=>{
+    //            return(quote.toLowerCase().indexOf(text.toLowerCase())>-1);
+     //       })
+    //    }
+      //this.searchText = text; 
+      console.log(text); 
+  }
 }
+  
+
+ 
+
+
 

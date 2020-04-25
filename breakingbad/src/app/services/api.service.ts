@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+//import {catchError} from 'rxjs/operators/catchError'; 
 //import {HttpClientModule} from '@angular/common/http'
 
 @Injectable({
@@ -9,17 +10,22 @@ import { map } from 'rxjs/operators';
 })
 export class ApiService {
 
-
   constructor(private http: HttpClient) {
 //this.loadUsers();  
 }
+
+getCharacters() {
+        return this.http.get<[]>(`https://www.breakingbadapi.com/api/characters?limit=10`)
+
+     }
+
 
  getUsers() {
     return this.http.get('https://randomuser.me/api/?results=25');
   }
 
 
-loadUsers(){
+lodUsers(){
    return this.http.get(`https://www.breakingbadapi.com/api/characters?limit=20`)
     //.subscribe(
       //  res => { console.log(res);
@@ -36,7 +42,7 @@ getEpisodes(){
     return this.http.get(`https://www.breakingbadapi.com/api/episodes/${id}`);
 }
 
-   getCharacters(){
+   getCharacte(){
    return this.http.get(`https://www.breakingbadapi.com/api/characters`);
 }
 

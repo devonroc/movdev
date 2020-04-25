@@ -5,18 +5,32 @@
 </ion-header>
 
 <ion-content>
-	<ion-list>
+	<!--<ion-list>
 		<ion-item button detail lines="inset" *ngFor="let character of characters | async"
     (click)="openDetails(character)">
     {{ character.name }}
 		</ion-item>
-	</ion-list>
+	</ion-list> -->
 
-    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+
+
+ <ion-list>
+		<ion-item button detail lines="inset" *ngFor="let user of users"
+    (click)="openDetails(user)">
+    {{ user.email }}
+		</ion-item>
+	</ion-list> 
+
+ <ion-infinite-scroll threshold="5%" (ionInfinite)="loadMore($event)">
+   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+ </ion-infinite-scroll>
+
+
+  <!---- >  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
     <ion-infinite-scroll-content
       loadingSpinner="bubbles"
       loadingText="Loading more data...">
     </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+  </ion-infinite-scroll>-->
 
 </ion-content>
