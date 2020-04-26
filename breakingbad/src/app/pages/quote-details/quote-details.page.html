@@ -1,12 +1,24 @@
+<!--   Title:  Week 7: Storing Data inside Ionic Apps
+      Author: Mikhail Timofeev
+     Date: 30/March/2020
+     Availability: https://mikhail-cct.github.io/mobdev/wk7/#/13
+     -->
+
 <ion-header>
 	<ion-toolbar color="primary">
 		<ion-buttons slot="start">
+<!-- button that gets the user back to the quotes page if clicked -->
 			<ion-back-button defaulthref="/tabs/quotes"></ion-back-button>
 		</ion-buttons>
+
+<!-- title shown in the page-->
 		<ion-title>Quote Details</ion-title>
 	</ion-toolbar>
 </ion-header>
 
+
+<!--Content of the quote page, it will show the quote and author, the 
+*ngIf indicates that this data will be showed if a character element is found  -->
 <ion-content>
 	<ion-card *ngIf="quote">
 		<ion-card-content>
@@ -20,8 +32,6 @@
 					<ion-label> Author </ion-label>
 					{{ quote.author }}
 				</ion-item>
-
-
 			</ion-list>
 		</ion-card-content>
 	</ion-card>

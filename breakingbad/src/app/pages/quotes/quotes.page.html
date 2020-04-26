@@ -1,20 +1,41 @@
-<ion-header>
-	<ion-toolbar color="primary">
-		<ion-title>Quotes</ion-title>
+<!--   Title:  Week9 (Ap 13- Ap 19)
+      Author: Mikhail Timofeev
+     Date: 14/April/2020
+     Availability: https://drive.google.com/file/d/1DtBAlEWYf28XwlT0eEHIsYc8D0DKLz3Q/view?usp=sharing
+-->
 
-         <ion-searchbar placeholder="Search Quotes"animated
-                 (ionChange)="searchQuote($event)">
- </ion-searchbar>
+<!-- HTML code for Quotes web page-->
+
+<ion-header>
+	<!-- Tool bar with the title of the web page-->
+	<ion-toolbar color="primary">
+		<ion-title>Breaking Bad Quotes</ion-title>
+		<ion-searchbar placeholder="Search Quotes" animated (ionChange)="searchQuote($event)">
+		</ion-searchbar>
 	</ion-toolbar>
 </ion-header>
 
+<!-- Content of the web page, here is shown a list of the
+quotes it includes a fuction onclick that opens a second page with the details about the 
+ selected quote,  the attributes quote and author are taken from the API https://www.breakingbadapi.com/  -->
+
+<!-- *ngForIt to iterate data within array datatype-->
+<!-- async works only with observable variables, it used usually to charge async data from APIS-->
+<!-- The pipe filter is used to do the search fuction -->
+
 <ion-content>
 	<ion-list>
-		<ion-item button detail lines="inset" *ngFor="let quote of quotes | async | filter: searchText"
+		<ion-card button detail lines="inset" *ngFor="let quote of quotes | async | filter: mySearch"
 			(click)="openDetails(quote)">
-			{{ quote.quote }}
-			{{ quote.author}}
-		</ion-item>
+			<ion-card-title>
+				<ion-icon name="bookmark-outline"></ion-icon>
+				{{ quote.quote }}
+			</ion-card-title>
+
+			<ion-card-content>
+				{{ quote.author}}
+			</ion-card-content>
+		</ion-card>
 	</ion-list>
 
 </ion-content>

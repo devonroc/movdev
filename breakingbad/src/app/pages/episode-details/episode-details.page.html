@@ -1,20 +1,38 @@
+<!--   Title:  Week 7: Storing Data inside Ionic Apps
+      Author: Mikhail Timofeev
+     Date: 30/March/2020
+     Availability: https://mikhail-cct.github.io/mobdev/wk7/#/13
+     -->
+
 <ion-header>
 	<ion-toolbar color="primary">
 		<ion-buttons slot="start">
+
+			<!-- button that gets the user back to the episodes page if clicked -->
+
 			<ion-back-button defaulthref="/tabs/episodes"></ion-back-button>
-	
-		<ion-title> Episode Details </ion-title>
-	
-    <ion-button (click)="unfavouriteEpisode()" *ngIf="isFavourite">
-      <ion-icon name="star" slot="icon-only"></ion-icon>
-    </ion-button>
-    <ion-button (click)="favouriteEpisode()" *ngIf="!isFavourite">
-      <ion-icon name="star-outline" slot="icon-only"></ion-icon>
-    </ion-button>
-	</ion-buttons>
+
+			<ion-title> Episode Details </ion-title>
+
+<!-- Button with the fuction to mark a episode as favourite, by default is false and if click
+the button will indicate that the episode is liked -->
+			<ion-button (click)="unfavouriteEpisode()" *ngIf="isFavourite">
+				<ion-icon name="thumbs-down-outline"></ion-icon>
+			</ion-button>
+
+             <!--If the episode is marked as favourite and click on this button
+            the episode will get marked as unfavourite  -->
+			<ion-button (click)="favouriteEpisode()" *ngIf="!isFavourite">
+				<ion-icon name="thumbs-up-outline"></ion-icon>
+			</ion-button>
+		</ion-buttons>
 	</ion-toolbar>
 </ion-header>
 
+<!--Content of the page, it will show the episode details as 
+episode number, title, season, air data and characters, the 
+*ngIf indicates that this data will be showed if a episode element is found  --
+-->
 <ion-content>
 
 	<ion-card *ngIf="episode">
@@ -41,7 +59,7 @@
 					{{ episode.air_date }}
 				</ion-item>
 
-			
+
 				<ion-item>
 					<ion-label> Characters </ion-label>
 					{{ episode.characters }}

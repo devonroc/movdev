@@ -1,71 +1,57 @@
+/**  Title:  Week9 (Ap 13- Ap 19)
+*    Author: Mikhail Timofeev
+*    Date: 14/April/2020
+*    Availability: https://drive.google.com/file/d/1DtBAlEWYf28XwlT0eEHIsYc8D0DKLz3Q/view?usp=sharing
+**/
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-//import {catchError} from 'rxjs/operators/catchError'; 
-//import {HttpClientModule} from '@angular/common/http'
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) {
-//this.loadUsers();  
-}
+    constructor(private http: HttpClient) {
+    }
+    //Method to get the Episodes data from the API
+    getEpisodes() {
+        return this.http.get(`https://www.breakingbadapi.com/api/episodes`);
+    }
 
-getCharacters() {
-        return this.http.get<[]>(`https://www.breakingbadapi.com/api/characters?limit=10`)
-
-     }
-
-
- getUsers() {
-    return this.http.get('https://randomuser.me/api/?results=25');
-  }
+    //Method to get the Episode by the ID from the API
+    getEpisode(id) {
+        return this.http.get(`https://www.breakingbadapi.com/api/episodes/${id}`);
+    }
 
 
-lodUsers(){
-   return this.http.get(`https://www.breakingbadapi.com/api/characters?limit=20`)
-    //.subscribe(
-      //  res => { console.log(res);
-          //  this.characters = this.characters.concat(res['results']);
-           
-   // });
-}
+    //Method to get the  list of characters and the offset from the API
+    getCharacters(offset) {
+        return this.http.get(`https://www.breakingbadapi.com/api/characters?limit=20&offset=${offset}`)
 
-getEpisodes(){
-    return this.http.get(`https://www.breakingbadapi.com/api/episodes`);
-}
+    }
 
-    getEpisode(id){
-    return this.http.get(`https://www.breakingbadapi.com/api/episodes/${id}`);
-}
+    //Method to get the characters by ID from the API
+    getCharacter(id) {
+        return this.http.get(`https://www.breakingbadapi.com/api/characters/${id}`);
 
-   getCharacte(){
-   return this.http.get(`https://www.breakingbadapi.com/api/characters`);
-}
+    }
+    //Method to get the  list of Quotes from the API
+    getQuotes() {
+        return this.http.get(`https://www.breakingbadapi.com/api/quotes`);
+    }
 
+    //Method to get the  Quotes by ID  from the API
+    getQuote(id) {
+        return this.http.get(`https://www.breakingbadapi.com/api/quotes/${id}`);
 
-
-
-getCharacter(id){
-    return this.http.get(`https://www.breakingbadapi.com/api/characters/${id}`);
-
-}
-  
-    getQuotes(){
-    return this.http.get(`https://www.breakingbadapi.com/api/quotes`);
-}
-
-getQuote(id){
-    return this.http.get(`https://www.breakingbadapi.com/api/quotes/${id}`);
-
-}
-
-  getDeaths(){
-    return this.http.get(`https://www.breakingbadapi.com/api/deaths`)
-}
+    }
+    //Method to get the  list of Deaths  from the API
+    getDeaths() {
+        return this.http.get(`https://www.breakingbadapi.com/api/deaths`)
+    }
 
 
 

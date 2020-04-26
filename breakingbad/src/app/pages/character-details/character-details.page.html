@@ -1,3 +1,10 @@
+<!--   Title:  Week 7: Storing Data inside Ionic Apps
+      Author: Mikhail Timofeev
+     Date: 30/March/2020
+     Availability: https://mikhail-cct.github.io/mobdev/wk7/#/13
+     -->
+
+
 <ion-header>
 	<ion-toolbar color="primary">
 		<ion-buttons slot="start">
@@ -6,16 +13,24 @@
 
 			<ion-title>Character Details</ion-title>
 
+<!-- Button with the fuction to mark a character as favourite, by default is false and if click
+the button will indicate that the character is liked -->
 			<ion-button (click)="unfavouriteCharacter()" *ngIf="isFavourite">
-				<ion-icon name="star" slot="icon-only"></ion-icon>
+				<ion-icon name="thumbs-down-outline"></ion-icon>
 			</ion-button>
+
+            <!--If the character is marked as favourite and click on this button
+            the character will get marked as unfavourite  -->
 			<ion-button (click)="favouriteCharacter()" *ngIf="!isFavourite">
-				<ion-icon name="star-outline" slot="icon-only"></ion-icon>
+				<ion-icon name="thumbs-up-outline"></ion-icon>
 			</ion-button>
 		</ion-buttons>
 	</ion-toolbar>
 </ion-header>
 
+<!--Content of the page, it will show the character details as 
+Nickname, name, birthday, occupation, status and a picture of it, the 
+*ngIf indicates that this data will be showed id a character element is found  -->
 <ion-content>
 	<ion-card>
 		<ion-card-content>
@@ -51,3 +66,5 @@
 		</ion-card-content>
 	</ion-card>
 </ion-content>
+
+

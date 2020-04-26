@@ -4,7 +4,8 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
 
-    //update routes for the elements in the menu tab
+    //Here are the routes that redirects to the modules of each page, also are the paths that redirect to
+    //the subpages if are available
     {
         path: 'tabs',
         component: TabsPage,

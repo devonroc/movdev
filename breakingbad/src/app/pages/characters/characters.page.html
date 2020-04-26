@@ -1,36 +1,29 @@
+<!--   Title:  Week9 (Ap 13- Ap 19)
+      Author: Mikhail Timofeev
+     Date: 14/April/2020
+     Availability: https://drive.google.com/file/d/1DtBAlEWYf28XwlT0eEHIsYc8D0DKLz3Q/view?usp=sharing
+-->
+
 <ion-header>
 	<ion-toolbar color="primary">
-    <ion-title>Characters</ion-title>
-  </ion-toolbar>
+		<ion-title>Characters</ion-title>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content>
-	<!--<ion-list>
-		<ion-item button detail lines="inset" *ngFor="let character of characters | async"
-    (click)="openDetails(character)">
-    {{ character.name }}
+
+
+	<ion-list>
+		<ion-item button detail lines="inset" *ngFor="let character of chars" (click)="openDetails(character)">
+			{{ character.name }}
 		</ion-item>
-	</ion-list> -->
+	</ion-list>
 
 
 
- <ion-list>
-		<ion-item button detail lines="inset" *ngFor="let user of users"
-    (click)="openDetails(user)">
-    {{ user.email }}
-		</ion-item>
-	</ion-list> 
-
- <ion-infinite-scroll threshold="5%" (ionInfinite)="loadMore($event)">
-   <ion-infinite-scroll-content></ion-infinite-scroll-content>
- </ion-infinite-scroll>
-
-
-  <!---- >  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>-->
+	<ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+		<ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+		</ion-infinite-scroll-content>
+	</ion-infinite-scroll>
 
 </ion-content>

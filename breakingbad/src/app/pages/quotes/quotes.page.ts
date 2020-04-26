@@ -1,3 +1,9 @@
+/**  Title: ionic 4+: Search Bar - Módulos - Filtros
+*    Author:     Fernando Herrera 
+*    Date: 18 mar. 2019
+*    Availability: https://www.youtube.com/watch?v=T5pdU0s4J6w&t=1994s
+**/
+
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
@@ -6,67 +12,61 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
 
 
 @Component({
-  selector: 'app-quotes',
-  templateUrl: './quotes.page.html',
-  styleUrls: ['./quotes.page.scss'],
+    selector: 'app-quotes',
+    templateUrl: './quotes.page.html',
+    styleUrls: ['./quotes.page.scss'],
 })
 export class QuotesPage implements OnInit {
 
+    //Declaration of the variables that will be used in the class  
+    //quotes is the variable where the elements from the API will be stored
     quotes: Observable<any>;
+    //quotesId will be the variable to store the Id of each quote
     quotesId: Observable<any>;
-    items: any[] =[]; 
-    searchText='';
+    //in the array quoteItem the quotes will be stored in a new array
+    quoteItem: any[] = [];
+    //mySearch is the variable where the input from the user will be stored when a search is being done
+    mySearch = '';
 
-  constructor(private router: Router, private api: ApiService, /*private filter: FilterPipe*/) {
-  }
-   
-  ngOnInit() {
-       // this.quotes = this.api.getQuotes();
-
-            this.initializeItems(); 
-
- // this.quotes.subscribe(data => {console.log('my data' , data);
-   // });
-
-}
-
-
-      initializeItems(){
-      this.quotes=this.api.getQuotes(); 
-      this.quotes.subscribe(item => {
-          this.items=[item];
-          // console it is only to check the info in console 
-          //console.log( data); 
-      });
+    constructor(private router: Router, private api: ApiService, /*private filter: FilterPipe*/) {
     }
 
-  //event is the name of the property that i have for this method 
-  searchQuote(event){
-      const text = event.target.value; 
-      this.searchText = text; 
-  //   this.searchText = event.detail.value;
-    //    const text = event.target.href;
-        
-    //      this.initializeItems(); 
-        
-    //  if (text && text.trim()!=''){
-    //        this.items=this.items.filter((quote)=>{
-    //            return(quote.author.toLowerCase().includes(text.toLowerCase())>-1);
-    //        })
-    //    }
-   
-    //  const text = event.target.author; 
-    //    if (text && text.trim()!=''){
-    //        this.items=this.items.filter((quote)=>{
-    //            return(quote.toLowerCase().indexOf(text.toLowerCase())>-1);
-     //       })
-    //    }
-      //this.searchText = text; 
-      console.log(text); 
-  }
+    ngOnInit() {
+        this.loadQuotes();
+        //initialize loadDeaths Method
 
-   openDetails(quotes){
+        // this.quotes = this.api.getQuotes();
+        // this.quotes.subscribe(data => {console.log('my data' , data);
+        // });
+
+    }
+
+    //The method will call the elements from the getCharacters method declared in 
+    //the api service and will store these elements in an array called quoteItem
+    loadQuotes() {
+        this.quotes = this.api.getQuotes();
+        this.quotes.subscribe(data => {
+            this.quoteItem = [data];
+            //console.log( data); 
+        });
+    }
+
+    //In this method the attribute event will be taken to start the search
+    // according with what is written by the user in the search 
+    searchQuote(event) {
+        const text = event.target.value;
+        this.mySearch = text;
+
+        //return(text.toLowerCase().indexOf(text.toLowerCase())>-1);
+
+
+        //show the results in the console
+        // console.log(text);
+    }
+
+    //Method to go to the details page of the quote selected by the user with a click
+    openDetails(quotes) {
         let quotesId = quotes.quote_id;
-    this.router.navigateByUrl(`/tabs/quotes/${quotesId}`);
+        this.router.navigateByUrl(`/tabs/quotes/${quotesId}`);
     }
 }

@@ -1,21 +1,42 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>
-      Deaths
-    </ion-title>
+<!--   Title:  Week9 (Ap 13- Ap 19)
+      Author: Mikhail Timofeev
+     Date: 14/April/2020
+     Availability: https://drive.google.com/file/d/1DtBAlEWYf28XwlT0eEHIsYc8D0DKLz3Q/view?usp=sharing
+-->
 
-             <ion-searchbar placeholder="Search Deaths"animated
-                 (ionChange)="searchDeath($event)">
- </ion-searchbar>
-  </ion-toolbar>
+<!-- HTML code for Deaths web page-->
+
+<ion-header>
+	<!-- Tool bar with the title of the web page-->
+	<ion-toolbar color="primary">
+		<ion-title>
+			Deaths in Breaking Bad
+		</ion-title>
+
+		<ion-searchbar placeholder="Look for keywords..." (ionChange)="searchDeath($event)"></ion-searchbar>
+	</ion-toolbar>
 </ion-header>
 
+<!-- Content of the web page, here is shown a list of the
+deaths it  the attributes death and cause are taken from the API https://www.breakingbadapi.com/  -->
+
+<!-- *ngForIt to iterate data within array datatype-->
+<!-- async works only with observable variables, it used usually to charge async data from APIS-->
+
+
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let user of users | async | filter: searchText">
-     {{ death.death }}
-			{{ death.cause}}
-      
-    </ion-item>
-  </ion-list>
+	<ion-list>
+		<ion-card *ngFor="let death of deaths | async | deathsfilter: searchdeath">
+			<ion-card-title>
+				<ion-label> Title: </ion-label>
+
+				{{ death.death }}
+			</ion-card-title>
+			<ion-card-content>
+				<ion-label> Death Cause: </ion-label>
+				{{ death.cause}}
+			</ion-card-content>
+		</ion-card>
+
+	</ion-list>
 </ion-content>

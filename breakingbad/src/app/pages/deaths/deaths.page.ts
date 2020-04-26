@@ -1,8 +1,13 @@
+/**  Title: ionic 4+: Search Bar - Módulos - Filtros
+*    Author:     Fernando Herrera 
+*    Date: 18 mar. 2019
+*    Availability: https://www.youtube.com/watch?v=T5pdU0s4J6w&t=1994s
+**/
+
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { NavController } from '@ionic/angular';
 
 @Component({
     selector: 'app-deaths',
@@ -10,59 +15,48 @@ import { NavController } from '@ionic/angular';
     styleUrls: ['./deaths.page.scss'],
 })
 export class DeathsPage implements OnInit {
-    
-    deaths: Observable<any>;
-    items: any[] =[]; 
-    searchText='';
 
-    constructor(private router: Router, private api: ApiService, navCtrl: NavController) { }
+    //variables to be used in the class
+    deaths: Observable<any>;
+    mDeaths: any[] = [];
+    searchdeath = '';
+
+    constructor(private router: Router, private api: ApiService) { }
 
     ngOnInit() {
-                 this.initializeItems(); 
-//this.getItems(event);
+        this.loadDeaths();
+        //initialize loadDeaths Method
 
-  //  this.deaths.subscribe(data => {console.log('my data' , data);
-    //}
-  
-}
+        //  this.loadDeaths.subscribe(data => {console.log('my data' , data);
+        //}
 
-      initializeItems(){
-      this.deaths=this.api.getDeaths(); 
-      this.deaths.subscribe(item => {
-          this.items=[item];
-          // console it is only to check the info in console 
-          //console.log( data); 
-      });
     }
 
-  //event is the name of the property that i have for this method 
-  searchDeath(event){
-      const text = event.target.value; 
-      this.searchText = text; 
-  //   this.searchText = event.detail.value;
-    //    const text = event.target.href;
-        
-    //      this.initializeItems(); 
-        
-    //  if (text && text.trim()!=''){
-    //        this.items=this.items.filter((quote)=>{
-    //            return(quote.author.toLowerCase().includes(text.toLowerCase())>-1);
-    //        })
-    //    }
-   
-    //  const text = event.target.author; 
-    //    if (text && text.trim()!=''){
-    //        this.items=this.items.filter((quote)=>{
-    //            return(quote.toLowerCase().indexOf(text.toLowerCase())>-1);
-     //       })
-    //    }
-      //this.searchText = text; 
-      console.log(text); 
-  }
-}
-  
+    //The method will call the elements from the getCharacters method declared in 
+    //the api service and will store these elements in an array called mDeaths
+    loadDeaths() {
+        this.deaths = this.api.getDeaths();
+        this.deaths.subscribe(data => {
+            this.mDeaths = [data];
+            // console it is only to check the info in console 
+            //console.log( data); 
+        });
+    }
 
- 
+
+    //In this method the attribute event will be taken to start the search
+    // according with what is written in the box
+    searchDeath(event) {
+        const text = event.target.value;
+        this.searchdeath = text;
+
+        //it will show the text in the console
+        // console.log(text);
+    }
+}
+
+
+
 
 
 

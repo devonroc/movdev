@@ -1,24 +1,32 @@
+<!--   Title:  Week9 (Ap 13- Ap 19)
+      Author: Mikhail Timofeev
+     Date: 14/April/2020
+     Availability: https://drive.google.com/file/d/1DtBAlEWYf28XwlT0eEHIsYc8D0DKLz3Q/view?usp=sharing
+--> 
+
+<!-- HTML code for Episodes web page-->
 <ion-header>
+	<!-- Tool bar with the title of the web page-->
 	<ion-toolbar color="primary">
-		<ion-title>Episodes</ion-title>
+		<ion-title>Breaking Bad Episodes</ion-title>
 	</ion-toolbar>
 </ion-header>
 
+<!-- Content of the web page, here is shown a list of the
+episodes it includes a fuction onclick that opens a second page with the details about the 
+episode selected the attributes title and episode_id are taken form the API https://www.breakingbadapi.com/  -->
+
+<!-- *ngForIt to iterate data within array datatype-->
+<!-- async works only with observable variables, it used usually to charge async data from APIS-->
 
 <ion-content>
 	<ion-list>
 		<ion-item button detail lines="inset" *ngFor="let episode of episodes | async" (click)="openDetails(episode)">
-			{{ episode.title }}
+			<ion-icon name="tv-outline" slot="start"></ion-icon>
+			<ion-label>
+				<h2> {{ episode.title }}</h2>
+				<h3> Episode No. {{ episode.episode_id }} </h3>
+			</ion-label>
 		</ion-item>
 	</ion-list>
-
-
-
-
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData(episode)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
 </ion-content>
